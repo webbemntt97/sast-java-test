@@ -1,0 +1,21 @@
+{
+ "libraries": [
+  {
+   "name": "junit:junit",
+   "current": "4.11"
+  }
+ ],
+ "none": 0,
+ "low": 0,
+ "medium": 0,
+ "high": 0,
+ "critical": 0,
+ "total": 0,
+ "sast": {
+  "name": "com.sample.testabilitytarpits:sample-testability-tarpits",
+  "version": "1.0-SNAPSHOT",
+  "securityScore": 100,
+  "size": "191399 Bytes",
+  "numberOfLines": 579
+ }
+}
