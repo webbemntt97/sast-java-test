@@ -12,6 +12,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class App {
+
+    static class Test<T> {
+        private T foo;
+        public Test(T foo) {
+            this.foo = foo;
+        }
+
+        public T getFoo() {
+            return foo;
+        }
+    }
     public static void main(String[] args) throws Exception {
         int port = 8000;
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -43,18 +54,13 @@ public class App {
             Map<String, String> params = queryToMap(
                     httpExchange.getRequestURI().getQuery()
             );
-            //String response = "Hello " + params.get("name") + "!";
-            StringBuilder htmlResponse = new StringBuilder();
-            htmlResponse.append("<html>")
-                    .append("<body>")
-                    .append("<p>")
-                    .append(params.get("name"))
-                    .append("</p>")
-                    .append("</body>")
-                    .append("</html>");
-            httpExchange.sendResponseHeaders(200, htmlResponse.length());
+
+
+            String name = params.get("name");
+            Test<String> test = new Test<>(name);
+            httpExchange.sendResponseHeaders(200, test.getFoo().length());
             OutputStream os = httpExchange.getResponseBody();
-            os.write(htmlResponse.toString().getBytes());
+            os.write(test.getFoo().getBytes());
             os.close();
         }
     }
